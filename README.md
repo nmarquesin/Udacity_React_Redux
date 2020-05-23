@@ -1,3 +1,131 @@
+## Steps Taken
+
+1. Create React App
+
+2. (PLANNING) Identify Each View
+
+VIEWS:
+
+- HOME
+- QUESTION
+- NEW QUESTION
+- LEADER BOARD
+- LOGIN
+
+3. (PLANNING) Break Each View Into a Hierarchy of Components
+
+COMPONENT HIERARCHY:
+
+- APP
+  - NAV
+  - QUESTIONS LIST
+    - QUESTION
+      - ANSWER
+    - NEW QUESTION
+  - LEADER BOARD
+    - USER CARD
+  - LOGIN
+
+4. (PLANNING) Determine What Events Happen in the App (_set, get, modify, delete_)
+
+NAV:
+
+- _get_ active user to display on navbar
+- _modify_ active user to null when logout happens
+
+QUESTIONS LIST:
+
+- _get_ questions
+- _get_ active user to sort which questions were answered and which were not
+
+QUESTION:
+
+- _get_ a particular question from a list of questions
+
+ANSWER:
+
+- _get_ answer from active user; or
+- _set_ answer for active user and _modify_ aswers for a particular question
+
+NEW QUESTION:
+
+- _get_ active user to author a question
+- _set_ new question authored by active user
+
+LEADER BOARD:
+
+- _get_ users and sorts by score
+
+USER CARD:
+
+- _get_ a particular user from a list of users
+
+LOGIN:
+
+- _modify_ the active user
+
+5. (PLANNING) Determine What Data Lives in the Store
+
+store: {
+users: {
+id: { id, name, avatarURL, answers, questions}
+}
+questions: {
+id: { id, author, timestamp, answer1, answer2}
+}
+activeUser: userId
+}
+
+## Steps To Take
+
+6. (CODING) Design the shape of the state and create actions and reducers.
+   store: {
+   users: {
+   'id': {
+   id: 'id',
+   name: 'name',
+   avatarURL: 'urlAddress',
+   answers: {
+   'questionId': 'answerOption',
+   'questionId': 'answerOption',
+   'questionId': 'answerOption',
+   },
+   questions: [
+   'questionId', 'questionId', 'questionId'
+   ]
+   }
+   }
+   questions: {
+   'id': {
+   id: 'id',
+   author: 'author',
+   timestamp: 1234,
+   answer1: {
+   votes: ['userId', 'userId']
+   text: "lorel ipsum"
+   },
+   answer2: {
+   votes: ['userId', 'userId']
+   text: "lorel ipsum"
+   }}
+   }
+   activeUser: 'userId'
+   }
+
+7. (CODING) Create a Redux store. Connect logger middleware (optional) and Redux Thunk middleware (alternatively, you can use Redux Saga, etc.).
+
+8. (CODING) For each view that needs access to the store, create the component and connect it to the store.
+
+9. (CODING) For the component you created in the last step, create actions and action creators. Check that everything works correctly.
+
+10. (CODING) Repeat Step 3 & Step 4 for each component that needs access to the store.
+
+11. (CODING) Create presentational components and confirm that everything works correctly.
+
+12. (CODING) Add React Router.
+
+13. (CODING) Add finishing touches and make sure the project meets the rubric.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
