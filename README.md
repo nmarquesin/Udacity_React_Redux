@@ -18,12 +18,12 @@ COMPONENT HIERARCHY:
 
 - APP
   - NAV
-  - QUESTIONS LIST
-    - QUESTION
-      - ANSWER
-    - NEW QUESTION
-  - LEADER BOARD
-    - USER CARD
+  - QUESTIONS LIST X
+    - QUESTION X
+      - ANSWER X
+    - NEW QUESTION X
+  - LEADER BOARD X
+    - USER CARD X
   - LOGIN
 
 4. (PLANNING) Determine What Events Happen in the App (_set, get, modify, delete_)
@@ -45,20 +45,19 @@ QUESTION:
 ANSWER:
 
 - _get_ answer from active user; or
-- _set_ answer for active user and _modify_ aswers for a particular question
+- _set_ aswer for active user
 
 NEW QUESTION:
 
-- _get_ active user to author a question
 - _set_ new question authored by active user
 
 LEADER BOARD:
 
-- _get_ users and sorts by score
+- _get_ users and sort them by score
 
 USER CARD:
 
-- _get_ a particular user from a list of users
+- present an user
 
 LOGIN:
 
@@ -69,56 +68,82 @@ LOGIN:
 store: {
 users: {
 id: { id, name, avatarURL, answers, questions}
-}
+},
 questions: {
 id: { id, author, timestamp, answer1, answer2}
-}
-activeUser: userId
+},
+activeUser: userId,
+selectedQuestion: questionId,
 }
 
 ## Steps To Take
 
-6. (CODING) Design the shape of the state and create actions and reducers.
-   store: {
-   users: {
-   'id': {
-   id: 'id',
-   name: 'name',
-   avatarURL: 'urlAddress',
-   answers: {
-   'questionId': 'answerOption',
-   'questionId': 'answerOption',
-   'questionId': 'answerOption',
-   },
-   questions: [
-   'questionId', 'questionId', 'questionId'
-   ]
-   }
-   }
-   questions: {
-   'id': {
-   id: 'id',
-   author: 'author',
-   timestamp: 1234,
-   answer1: {
-   votes: ['userId', 'userId']
-   text: "lorel ipsum"
-   },
-   answer2: {
-   votes: ['userId', 'userId']
-   text: "lorel ipsum"
-   }}
-   }
-   activeUser: 'userId'
-   }
+6. (CODING) Design the shape of the state and create actions to initialize data and reducers.
+
+## Store:
+
+store: {
+users: {
+'id': {
+id: 'id',
+name: 'name',
+avatarURL: 'urlAddress',
+answers: {
+'questionId': 'answerOption',
+'questionId': 'answerOption',
+'questionId': 'answerOption',
+},
+questions: [
+'questionId', 'questionId', 'questionId'
+]
+}
+}
+questions: {
+'id': {
+id: 'id',
+author: 'author',
+timestamp: 1234,
+answer1: {
+votes: ['userId', 'userId']
+text: "lorel ipsum"
+},
+answer2: {
+votes: ['userId', 'userId']
+text: "lorel ipsum"
+}}
+},
+activeUser: 'userId',
+selectedQuestion: questionId,
+}
+
+## Actions:
+
+setActiveUser
+handleInitialData
+receiveQuestions
+receiveUsers
+
+## Reducers:
+
+users
+questions
+activeUser
 
 7. (CODING) Create a Redux store. Connect logger middleware (optional) and Redux Thunk middleware (alternatively, you can use Redux Saga, etc.).
 
+- To create a Redux store: install 'react-redux' (for create-store) and 'redux' (for combineReducers and Provider).
+
+- To connect middleware: install redux-thunk, create logger middleware.
+
+- Dispatch actions to store: use connect from react-redux to give 'App' access to dispatch and call handleInitialData inside componentDidMount from the App Component.
+
 8. (CODING) For each view that needs access to the store, create the component and connect it to the store.
 
-9. (CODING) For the component you created in the last step, create actions and action creators. Check that everything works correctly.
+- Create the QUESTIONS LIST component
 
-10. (CODING) Repeat Step 3 & Step 4 for each component that needs access to the store.
+9. (CODING) For the component you created in the last step, create any actions and action creators missing. Check that everything works correctly.
+
+10. (CODING) Repeat Step 8 & Step 9 for each component that needs access to the store.
 
 11. (CODING) Create presentational components and confirm that everything works correctly.
 
