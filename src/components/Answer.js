@@ -1,117 +1,108 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import selectedQuestion from "../reducers/selectedQuestion";
 import { handleSaveAnswer } from "../actions/getData";
+import {
+  getAvatar,
+  getAuthorsName,
+  getText,
+  getVotes,
+  answeredByUser,
+  votedByUser,
+} from "../utils/commonFunctions";
+
+import styles from "./Answer.module.scss";
 
 class Answer extends Component {
-  state = {};
-
-  handleClick1 = () => {
-    // answer.preventDefault();
-    console.log("Answer ======> 1");
-    const { dispatch, questionId } = this.props;
-    const qid = questionId.id;
-    dispatch(handleSaveAnswer(qid, "optionOne"));
-  };
-  handleClick2 = () => {
-    // answer.preventDefault();
-    console.log("Answer ======> 2");
-    const { dispatch, questionId } = this.props;
-    const qid = questionId.id;
-    dispatch(handleSaveAnswer(qid, "optionTwo"));
+  handleClick = (event) => {
+    const { dispatch, qId } = this.props;
+    dispatch(handleSaveAnswer(qId, event.target.value));
   };
 
-  askQuestion(text1, text2) {
+  askQuestion = () => {
+    const { questions, qId } = this.props;
     return (
-      <div style={{ backgroundColor: "pink", textAlign: "center" }}>
+      <div className={styles.qArea}>
         <p>Would you rather...</p>
-        <button onClick={this.handleClick1}>{text1}</button>
-        <button onClick={this.handleClick2}>{text2}</button>
+        <button value="optionOne" onClick={this.handleClick}>
+          {getText(1, questions, qId)}
+        </button>
+        <button value="optionTwo" onClick={this.handleClick}>
+          {getText(2, questions, qId)}
+        </button>
       </div>
     );
-  }
-  showPoll(text1, text2, votes1, votes2, vote) {
+  };
+
+  getPercentage = (arg) => {
+    const { questions, qId } = this.props;
     return (
-      <div style={{ backgroundColor: "purple", textAlign: "center" }}>
+      (getVotes(arg, questions, qId) * 100) /
+      (getVotes(1, questions, qId) + getVotes(2, questions, qId))
+    );
+  };
+
+  getTotal = () => {
+    const { questions, qId } = this.props;
+    return getVotes(1, questions, qId) + getVotes(2, questions, qId);
+  };
+  ss;
+  showPoll = () => {
+    const { questions, qId, users, activeUser } = this.props;
+    return (
+      <div className={styles.qArea}>
         <p>Results for question: </p>
 
-        <div
-          style={{ border: "solid green", borderRadius: "5px", margin: "15px" }}
-        >
-          {vote === "optionOne" ? (
-            <div style={{ color: "yellow" }}>your vote</div>
+        <div className={styles.aArea}>
+          {votedByUser(qId, users, activeUser) === "optionOne" ? (
+            <div className={styles.aBadge}>your vote</div>
           ) : (
             ""
           )}
-          <p>Would you rather {text1}?</p>
-          <p>{(votes1 * 100) / (votes1 + votes2)}%</p>
+          <p>Would you rather {getText(1, questions, qId)}?</p>
+          <p>{this.getPercentage(1)}% of votes</p>
           <p>
-            {votes1} out of {votes1 + votes2} votes
+            {getVotes(1, questions, qId)} out of {this.getTotal()} votes
           </p>
         </div>
-        <div
-          style={{ border: "solid green", borderRadius: "5px", margin: "15px" }}
-        >
-          {vote === "optionTwo" ? (
-            <div style={{ color: "yellow" }}>your vote</div>
+        <div className={styles.aArea}>
+          {votedByUser(qId, users, activeUser) === "optionTwo" ? (
+            <div className={styles.aBadge}>your vote</div>
           ) : (
             ""
           )}
-          <p>Would you rather {text2}?</p>
-          <p>{(votes2 * 100) / (votes1 + votes2)}%</p>
+          <p>Would you rather {getText(2, questions, qId)}?</p>
+          <p>{this.getPercentage(2)}% of votes</p>
           <p>
-            {votes2} out of {votes1 + votes2} votes
+            {getVotes(2, questions, qId)} out of {this.getTotal()} votes
           </p>
         </div>
       </div>
     );
-  }
-  render() {
-    const {
-      answeredByUser,
-      questionId,
-      authorName,
-      authorAvatar,
-      text1,
-      text2,
-      votes1,
-      votes2,
-      vote,
-    } = this.props;
+  };
 
+  render() {
+    const { users, questions, qId, activeUser } = this.props;
+    console.log("active user =====> ", activeUser["id"]);
+    console.log("users [active user] =====> ", users[activeUser["id"]]);
     return (
       <div>
-        <div
-          style={{
-            margin: "10px",
-            border: "solid grey",
-            borderRadius: "5px",
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: "grey",
-              color: "white",
-              padding: "10px 20px",
-              fontStyle: "italic",
-            }}
-          >
-            {authorName} asks:
+        <div className={styles.div1}>
+          <div className={styles.div2}>
+            {getAuthorsName(users, questions, qId)} asks:
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div className={styles.div3}>
             <div>
               <img
                 width="100px"
                 height="100px"
-                src={authorAvatar}
+                src={getAvatar(users, questions, qId)}
                 alt="user avatar"
-                style={{ borderRight: "solid grey" }}
+                className={styles.img}
               />
             </div>
-
-            {answeredByUser
-              ? this.showPoll(text1, text2, votes1, votes2, vote, questionId)
-              : this.askQuestion(text1, text2)}
+            {answeredByUser(qId, users, activeUser)
+              ? this.showPoll()
+              : this.askQuestion()}
           </div>
         </div>
       </div>
@@ -119,49 +110,11 @@ class Answer extends Component {
   }
 }
 
-function mapStateToProps({ activeUser, questions, users, selectedQuestion }) {
-  const questionId = questions[selectedQuestion];
-  const answeredByUser = Object.keys(users[activeUser]["answers"]).includes(
-    selectedQuestion
-  );
-  const author = questions[selectedQuestion]
-    ? questions[selectedQuestion]["author"]
-    : "";
-  const authorAvatar = users[author] ? users[author]["avatarURL"] : "";
-  const authorName = users[author] ? users[author]["name"] : "";
-
-  const votes1 = questions[selectedQuestion]
-    ? questions[selectedQuestion]["optionOne"]["votes"].length
-    : "";
-  const votes2 = questions[selectedQuestion]
-    ? questions[selectedQuestion]["optionTwo"]["votes"].length
-    : "";
-  const text1 = questions[selectedQuestion]
-    ? questions[selectedQuestion]["optionOne"]["text"]
-    : "";
-  const text2 = questions[selectedQuestion]
-    ? questions[selectedQuestion]["optionTwo"]["text"]
-    : "";
-
-  function getVote() {
-    for (let [key, value] of Object.entries(users[activeUser]["answers"])) {
-      if (key === selectedQuestion) return value;
-    }
-    return "";
-  }
-  const vote = getVote();
-
+function mapStateToProps({ activeUser, questions, users }) {
   return {
-    answeredByUser,
-    votes1,
-    questionId,
-    votes2,
-    text1,
-    text2,
-    authorAvatar,
-    authorName,
-    answeredByUser,
-    vote,
+    activeUser,
+    users,
+    questions,
   };
 }
 export default connect(mapStateToProps)(Answer);

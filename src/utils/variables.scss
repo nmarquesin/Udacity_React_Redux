@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+$font-family: "Roboto", sans-serif;
+$color1: #81b29a; //accent colour
+$color2: #e07a5f;
+$color3: #3d405b;
+$color4: #f2cc8f;
+$color5: #f4f1de; //background colour
+$color6: #00a896;
+
+.btn {
+  background-color: $color1;
+  color: $color5;
+  padding: 0px 15px;
+  margin: 0;
+  border: none;
+  border-radius: 7px;
+}

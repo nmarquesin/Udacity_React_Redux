@@ -1,52 +1,87 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { setActiveUser } from "../actions/activeUser";
+import { useHistory, useLocation } from "react-router-dom";
 
-class NavBar extends Component {
-  state = {};
-  componentDidMount() {
-    console.log("activeUser ====> ", this.props.loggedUser);
-  }
-  click = () => {
-    const { dispatch } = this.props;
+import styles from "./NavBar.module.scss";
+
+const NavBar = ({ dispatch, loggedUser, users }) => {
+  let history = useHistory();
+
+  const click = () => {
     dispatch(setActiveUser(""));
+    history.push("/login");
   };
-  render() {
-    const { loggedUser, users } = this.props;
-    console.log("ActiveUser ====> ", loggedUser);
-    return (
-      <div>
-        <h2>NavBar</h2>
+
+  let location = useLocation();
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.navbar}>
+        <nav className={styles.navitems}>
+          <ul>
+            <li>
+              <div
+                className={
+                  location.pathname === "/" ? styles.tabselected : styles.tab
+                }
+              >
+                <Link to="/">Home</Link>
+              </div>
+            </li>
+            <li>
+              <div
+                className={
+                  location.pathname === "/newquestion"
+                    ? styles.tabselected
+                    : styles.tab
+                }
+              >
+                <Link to="/newquestion">New Question</Link>
+              </div>
+            </li>
+            <li>
+              <div
+                className={
+                  location.pathname === "/leaderboard"
+                    ? styles.tabselected
+                    : styles.tab
+                }
+              >
+                <Link to="/leaderboard">Leader Board</Link>
+              </div>
+            </li>
+          </ul>
+        </nav>
         {loggedUser ? (
-          <div>
-            <nav>
-              <ul>
-                <li>Home</li>
-                <li>New Question</li>
-                <li>Leader Board</li>
-              </ul>
-            </nav>
-            <p> Welcome, {users[loggedUser].name}!</p>
-            <button onClick={this.click}>Logout</button>
+          <div className={styles.helloarea}>
+            <div className={styles.username}>
+              Welcome, {users[loggedUser].name}!
+            </div>
+            <div>
+              <button className={styles.btn} onClick={click}>
+                Logout
+              </button>
+            </div>
           </div>
         ) : (
-          <div>
-            <nav>
-              <ul>
-                <li>Home</li>
-                <li>New Question</li>
-                <li>Leader Board</li>
-              </ul>
-            </nav>
+          <div className={styles.navitems}>
+            <div
+              className={
+                location.pathname === "/login" ? styles.tabselected : styles.tab
+              }
+            >
+              <Link to="/login"> Login</Link>
+            </div>
           </div>
         )}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 function mapStateToProps({ activeUser, users }) {
-  console.log("HeyHo: ", activeUser.id);
   const loggedUser = activeUser.id;
   return { loggedUser, users };
 }

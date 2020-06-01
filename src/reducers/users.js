@@ -14,7 +14,6 @@ export default function users(state = {}, action) {
 
     case ADD_QUESTION_BY_USER:
       const { question, user } = action;
-
       return {
         ...state,
         [user.id]: {
@@ -25,7 +24,9 @@ export default function users(state = {}, action) {
 
     case ADD_ANSWER_BY_USER:
       const { qid, answer, authedUser } = action;
-
+      console.log("Reducer: ", qid);
+      console.log("Reducer: ", answer);
+      console.log("Reducer: ", authedUser);
       return {
         ...state,
         [authedUser]: {

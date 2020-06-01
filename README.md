@@ -24,7 +24,7 @@ COMPONENT HIERARCHY:
     - NEW QUESTION X
   - LEADER BOARD X
     - USER CARD X
-  - LOGIN
+  - LOGIN X
 
 4. (PLANNING) Determine What Events Happen in the App (_set, get, modify, delete_)
 
@@ -105,11 +105,11 @@ author: 'author',
 timestamp: 1234,
 answer1: {
 votes: ['userId', 'userId']
-text: "lorel ipsum"
+text: "lorem ipsum"
 },
 answer2: {
 votes: ['userId', 'userId']
-text: "lorel ipsum"
+text: "lorem ipsum"
 }}
 },
 activeUser: 'userId',
@@ -131,11 +131,11 @@ activeUser
 
 7. (CODING) Create a Redux store. Connect logger middleware (optional) and Redux Thunk middleware (alternatively, you can use Redux Saga, etc.).
 
-- To create a Redux store: install 'react-redux' (for create-store) and 'redux' (for combineReducers and Provider).
+- To create a Redux store: install 'react-redux' (for create-store) and 'redux' (for combineReducers and Provider). X
 
-- To connect middleware: install redux-thunk, create logger middleware.
+- To connect middleware: install redux-thunk, create logger middleware. X
 
-- Dispatch actions to store: use connect from react-redux to give 'App' access to dispatch and call handleInitialData inside componentDidMount from the App Component.
+- Dispatch actions to store: use connect from react-redux to give 'App' access to dispatch and call handleInitialData inside componentDidMount from the App Component. X
 
 8. (CODING) For each view that needs access to the store, create the component and connect it to the store.
 
@@ -145,7 +145,22 @@ activeUser
 
 10. (CODING) Repeat Step 8 & Step 9 for each component that needs access to the store.
 
+COMPONENTS CREATED:
+
+- APP
+  - NAV X
+  - QUESTIONS LIST X (Already created)
+    - QUESTION X
+      - ANSWER X
+    - NEW QUESTION X
+  - LEADER BOARD X
+  - LOGIN X
+
 11. (CODING) Create presentational components and confirm that everything works correctly.
+
+COMPONENT CREATED:
+
+- USER CARD X
 
 12. (CODING) Add React Router.
 

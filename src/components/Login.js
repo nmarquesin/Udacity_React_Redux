@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Dropdown, DropdownButton } from "react-bootstrap";
 import { setActiveUser } from "../actions/activeUser";
+
+import styles from "./Login.module.scss";
 
 class Login extends Component {
   state = {
@@ -11,10 +12,8 @@ class Login extends Component {
 
   change = (event) => {
     const { users } = this.props;
-    let selectedUser = "";
     for (let user in users) {
       if (users[user].name === event.target.value) {
-        selectedUser = user;
         this.setState(() => ({
           userId: users[user].id,
         }));
@@ -22,52 +21,46 @@ class Login extends Component {
     }
     return this.setState({ user: event.target.value });
   };
+
   click = () => {
     const { dispatch } = this.props;
     dispatch(setActiveUser(this.state.userId));
-
-    // console.log("state II ", this.state.user);
-    // console.log("state III ", this.state.userId);
   };
+
   render() {
-    const { users, activeUser } = this.props;
+    const { users } = this.props;
     return (
-      <div>
-        <h3>Login</h3>
-        {/* <div>
-          <select id="users" onChange={this.change} value={this.state.user}>
-            {Object.keys(users).map((user) => (
-              <option value={users[user].name}>{users[user].name}</option>
-            ))}
-          </select>
-        </div> */}
-        <div>
-          <input
-            type="text"
-            name="user"
-            list="users"
-            onChange={this.change}
-            value={this.state.user}
-          />
-          <datalist id="users">
-            {Object.keys(users).map((user) => (
-              <option value={users[user].name} key={users[user].id}>
-                {users[user].name}
-              </option>
-            ))}
-          </datalist>
-          <button onClick={(event) => this.click(event)}> Select User</button>
+      <div className={styles.container}>
+        <div className={styles.card}>
+          <div className={styles.header}>
+            <h3>Welcome to the Would You Rather App</h3>
+            <h4>Please sign in to continue</h4>
+          </div>
+          <div className={styles.select}>
+            <input
+              type="text"
+              name="user"
+              list="users"
+              onChange={this.change}
+              value={this.state.user}
+            />
+            <datalist id="users">
+              {Object.keys(users).map((user) => (
+                <option value={users[user].name} key={users[user].id}>
+                  {users[user].name}
+                </option>
+              ))}
+            </datalist>
+          </div>
+          <div className={styles.button}>
+            <button
+              className={styles.btn}
+              onClick={(event) => this.click(event)}
+            >
+              Select User
+            </button>
+          </div>
         </div>
-        {/* <form id="users" action="">
-          <DropdownButton id="dropdown-basic-button" title=>
-          </DropdownButton>
-          <input
-            id="users"
-            type="submit"
-            value="Select User"
-            onSubmit={(e) => this.handleClick(e)}
-          />
-        </form> */}
       </div>
     );
   }

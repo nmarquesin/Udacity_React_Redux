@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleAddQuestion } from "../actions/getData";
-import { handleAddQuestionByUser } from "../actions/getData";
 
 class NewQuestion extends Component {
   state = {
@@ -29,18 +28,10 @@ class NewQuestion extends Component {
     const { optionOneText, optionTwoText } = this.state;
     const { dispatch } = this.props;
     dispatch(handleAddQuestion(optionOneText, optionTwoText));
-
-    console.log("Logging event, text1 => ", optionOneText);
-    console.log("Logging event, text2 => ", optionTwoText);
     this.setState(() => ({
       optionOneText: "",
     }));
   };
-  componentDidMount() {
-    //   this.setState(() => {
-    //     author: this.props.activeUser;
-    //   });
-  }
   render() {
     return (
       <div>

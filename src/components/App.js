@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { handleInitialData } from "../actions/getData";
 import QuestionsList from "./QuestionsList";
+import Question from "./Question";
 import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
 import Login from "./Login";
@@ -16,16 +18,32 @@ class App extends Component {
   }
 
   render() {
+    const { loggedUser } = this.props;
     return (
       <div className="App">
         {this.props.loading ? null : (
-          <NavBar />
-          // <Login />
-          // <LeaderBoard />
-          // <React.Fragment>
-          //   <NewQuestion />
-          //   <QuestionsList />
-          // </React.Fragment>
+          <React.Fragment>
+            <NavBar />
+            <Switch>
+              <Route exact path="/newquestion">
+                {loggedUser ? <NewQuestion /> : <Redirect to="/login" />}
+              </Route>
+
+              <Route exact path="/leaderboard">
+                <LeaderBoard />
+              </Route>
+
+              <Route exact path="/login">
+                {loggedUser ? <Redirect to="/" /> : <Login />}
+              </Route>
+
+              <Route path="/question/:id" children={<Question />} />
+
+              <Route exact path="/">
+                {loggedUser ? <QuestionsList /> : <Redirect to="/login" />}
+              </Route>
+            </Switch>
+          </React.Fragment>
         )}
       </div>
     );
@@ -33,8 +51,11 @@ class App extends Component {
 }
 
 function mapStateToProps({ activeUser }) {
+  const loading = activeUser === null;
+  const loggedUser = loading ? null : activeUser.id;
   return {
-    loading: activeUser === null,
+    loading,
+    loggedUser,
   };
 }
 

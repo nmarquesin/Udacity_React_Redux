@@ -1,0 +1,88 @@
+@import "../utils/variables.scss";
+
+body {
+  font-family: $font-family;
+  background-color: $color5;
+  color: $color3;
+}
+ul {
+  display: flex;
+  list-style-type: none;
+  //   border: solid red;
+  padding: 0;
+  margin: 0;
+  li a {
+    color: $color3;
+    padding: 0 10px 10px 10px;
+    // margin-bottom: 20px;
+  }
+  li a:hover {
+    color: $color5;
+    text-decoration: none;
+    // background-color: $color1;
+    // border-radius: 15px 15px 0 0;
+  }
+}
+.container {
+  display: flex;
+  justify-content: center;
+  border-bottom: solid $color1;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 80%;
+  height: 100px;
+  //   border: solid orange;
+}
+.navitems {
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  margin-right: 10px;
+  //   border: solid green;
+  a {
+    color: $color3;
+    padding: 0 10px 10px 10px;
+    // margin-bottom: 20px;
+  }
+  a:hover {
+    color: $color5;
+    text-decoration: none;
+    background-color: $color1;
+    // border-radius: 15px 15px 0 0;
+  }
+}
+
+.helloarea {
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  //   border: solid red;
+}
+.username {
+  margin-right: 10px;
+  color: $color2;
+  //   border: solid red;
+}
+
+.tab:hover {
+  border-bottom: 30px solid $color1;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  height: 0;
+  margin-bottom: -6px;
+  //   margin-bottom: -150px;
+}
+.tabselected {
+  border-bottom: 30px solid $color1;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  height: 0;
+  margin-bottom: -6px;
+  a {
+    color: $color5;
+  }
+  //   margin-bottom: -150px;
+}

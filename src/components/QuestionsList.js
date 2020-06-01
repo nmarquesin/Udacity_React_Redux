@@ -1,82 +1,91 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import Question from "./Question";
-import Answer from "./Answer";
+import QuestionCard from "./QuestionCard";
+import { setSelectedQuestion } from "../actions/selectedQ";
+import {
+  getAuthor,
+  getAvatar,
+  getText,
+  answeredByUser,
+} from "../utils/commonFunctions";
 
 class QuestionsList extends Component {
   state = {
-    showUnansweredQuestions: true,
+    showUnansweredQ: true,
   };
-  handleClick(value) {
+
+  selectQuestionGroup(value) {
     switch (value) {
       case "answered":
         return this.setState(() => ({
-          showUnansweredQuestions: false,
+          showUnansweredQ: false,
         }));
       default:
         return this.setState(() => ({
-          showUnansweredQuestions: true,
+          showUnansweredQ: true,
         }));
     }
   }
 
+  handleClick = (value) => {
+    this.props.dispatch(setSelectedQuestion(value));
+    return;
+  };
+
   render() {
-    const { selectedQuestion } = this.props;
-    // console.log(this.props);
+    const { questionIds, questions, users, activeUser } = this.props;
     return (
       <div>
-        {selectedQuestion === "" ? (
-          <Fragment>
-            <h3>Questions</h3>
-            Selected:{" "}
-            {this.state.showUnansweredQuestions ? (
-              <div>Unanswered Questions</div>
-            ) : (
-              <div>Answered Questions</div>
-            )}
-            <div>
-              <button
-                value="unanswered"
-                onClick={(e) => this.handleClick(e.target.value)}
-              >
-                Unanswered Questions
-              </button>
-              <button
-                value="answered"
-                onClick={(e) => this.handleClick(e.target.value)}
-              >
-                Answered Questions
-              </button>
-            </div>
-            <ul>
-              {this.props.questionIds.map((id) => (
-                <li key={id} style={{ listStyleType: "none" }}>
-                  <Question
-                    id={id}
-                    showUnansweredQuestions={this.state.showUnansweredQuestions}
-                  />
-                </li>
-              ))}
-            </ul>
-          </Fragment>
+        <h3>Questions</h3>
+        Selected:{" "}
+        {this.state.showUnansweredQ ? (
+          <div>Unanswered Questions</div>
         ) : (
-          <div>
-            <Answer
-              showUnansweredQuestions={this.state.showUnansweredQuestions}
-            />
-          </div>
+          <div>Answered Questions</div>
         )}
+        <div>
+          <button
+            value="unanswered"
+            onClick={(e) => this.selectQuestionGroup(e.target.value)}
+          >
+            Unanswered Questions
+          </button>
+          <button
+            value="answered"
+            onClick={(e) => this.selectQuestionGroup(e.target.value)}
+          >
+            Answered Questions
+          </button>
+        </div>
+        <ul>
+          {questionIds.map((id) => (
+            <li key={id} style={{ listStyleType: "none" }}>
+              <QuestionCard
+                id={id}
+                author={getAuthor(questions, id)}
+                avatar={getAvatar(users, questions, id)}
+                qText={getText(1, questions, id)}
+                answered={answeredByUser(id, users, activeUser)}
+                showUnansweredQ={this.state.showUnansweredQ}
+                onHandleClick={this.handleClick}
+              />
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
 }
 
-function mapStateToProps({ questions, selectedQuestion }) {
+function mapStateToProps({ questions, users, activeUser, selectedQuestion }) {
   return {
     questionIds: Object.keys(questions).sort(
       (a, b) => questions[b].timestamp - questions[a].timestamp
     ),
     selectedQuestion,
+    questions,
+    users,
+    activeUser,
   };
 }
 

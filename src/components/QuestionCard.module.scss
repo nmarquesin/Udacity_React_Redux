@@ -1,0 +1,36 @@
+.div1 {
+  margin: 10px;
+  border: solid grey;
+  border-radius: 5px;
+}
+
+.div2 {
+  background-color: grey;
+  color: white;
+  padding: 10px 20px;
+  font-style: italic;
+}
+
+.div3 {
+  display: flex;
+  align-items: center;
+}
+.image {
+  border-right: solid grey;
+}
+
+.div4 {
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: yellow;
+  transform: rotate(20deg);
+  margin-top: -50px;
+  margin-left: 500px;
+}
+
+.div5 {
+  background-color: green;
+  text-align: center;
+}
