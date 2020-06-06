@@ -1,22 +1,24 @@
-.div1 {
+@import "../utils/variables.scss";
+
+.card-container {
   margin: 10px;
-  border: solid grey;
+  border: solid $color1;
   border-radius: 5px;
 }
 
-.div2 {
-  background-color: grey;
+.card-title {
+  background-color: $color1;
   color: white;
   padding: 10px 20px;
   font-style: italic;
 }
 
-.div3 {
+.card-body {
   display: flex;
   align-items: center;
 }
-.image {
-  border-right: solid grey;
+.card-avatar {
+  border-right: solid $color1;
 }
 
 .div4 {
@@ -30,7 +32,9 @@
   margin-left: 500px;
 }
 
-.div5 {
-  background-color: green;
+.question-area {
+  // padding: auto 30px;
+  margin: 0 50px;
+  // border: solid blue;
   text-align: center;
 }

@@ -15,28 +15,33 @@ const QuestionCard = (props) => {
   const renderButton = (answered, id) => {
     const buttonText = answered ? "View poll" : "Answer question";
     return (
-      <button value={id} onClick={(e) => handleClick(e.target.value)}>
+      <button
+        className={styles["btn"]}
+        value={id}
+        onClick={(e) => handleClick(e.target.value)}
+      >
         {buttonText}
       </button>
     );
   };
   const { id, author, avatar, answered, qText, showUnansweredQ } = props;
+  console.log("styles ", styles);
   return (
     <div>
       {!answered === showUnansweredQ ? (
-        <div className={styles.div1}>
-          <div className={styles.div2}>{author} asks:</div>
-          <div className={styles.div3}>
+        <div className={styles["card-container"]}>
+          <div className={styles["card-title"]}>{author} asks:</div>
+          <div className={styles["card-body"]}>
             <div>
               <img
                 width="100px"
                 height="100px"
                 src={avatar}
                 alt="user avatar"
-                className={styles.image}
+                className={styles["card-avatar"]}
               />
             </div>
-            <div className={styles.div5}>
+            <div className={styles["question-area"]}>
               Would you rather {qText} or ... ?
               {answered ? (
                 <div className={styles.div4}>
