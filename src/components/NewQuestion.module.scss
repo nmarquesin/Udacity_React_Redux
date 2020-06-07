@@ -1,0 +1,44 @@
+@import "../utils/variables.scss";
+@import "../utils/common-classes.scss";
+
+h4 {
+  font-weight: bold;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.card {
+  margin: 10px;
+  border: thin solid $color4;
+  border-radius: 5px;
+  margin-top: 50px;
+  max-width: 600px;
+}
+.form-area {
+  width: 100%;
+  //   border: solid blue;
+  text-align: left;
+  padding: 10px;
+}
+.text {
+  //   font-weight: bold;
+  padding-bottom: 16px;
+}
+.question-prompt {
+  font-size: large;
+  font-weight: bolder;
+  padding-bottom: 16px;
+}
+.input-area {
+  width: 100%;
+  //   border: solid blue;
+  padding-bottom: 16px;
+}
+.input {
+  width: 100%;
+}
+.button {
+  padding-bottom: 16px;
+}
