@@ -34,23 +34,23 @@ ul {
   align-items: flex-end;
   width: 80%;
   height: 100px;
-  //   border: solid orange;
 }
 .navitems {
+  // border: solid orange;
   display: flex;
   align-items: center;
-  padding-bottom: 5px;
+  // padding-bottom: 5px;
   margin-right: 10px;
   //   border: solid green;
   a {
     color: $color3;
-    padding: 0 10px 10px 10px;
+    padding: 0 10px 0 10px;
     // margin-bottom: 20px;
   }
   a:hover {
     color: $color5;
     text-decoration: none;
-    background-color: $color1;
+    // background-color: $color1;
     // border-radius: 15px 15px 0 0;
   }
 }
@@ -64,25 +64,64 @@ ul {
 .username {
   margin-right: 10px;
   color: $color2;
-  //   border: solid red;
 }
 
+.tab {
+  padding-top: 10px;
+  margin: 0 5px;
+  // border: solid red;
+}
 .tab:hover {
-  border-bottom: 30px solid $color1;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  height: 0;
-  margin-bottom: -6px;
-  //   margin-bottom: -150px;
+  background-color: $color1;
+  border-radius: 10px 10px 0 0;
 }
 .tabselected {
-  border-bottom: 30px solid $color1;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  height: 0;
-  margin-bottom: -6px;
+  // border: solid red;
+  margin: 0 5px;
+  padding-top: 10px;
+  border-radius: 10px 10px 0 0;
+  background-color: $color1;
   a {
     color: $color5;
   }
-  //   margin-bottom: -150px;
+}
+// .tab:hover {
+//   border-bottom: 30px solid $color1;
+//   border-left: 20px solid transparent;
+//   border-right: 20px solid transparent;
+//   height: 0;
+//   margin-bottom: -6px;
+// }
+// .tabselected {
+//   border-bottom: 30px solid $color1;
+//   border-left: 20px solid transparent;
+//   border-right: 20px solid transparent;
+//   height: 0;
+//   margin-bottom: -6px;
+//   a {
+//     color: $color5;
+//   }
+// }
+.username-mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .menu-text {
+    display: none;
+  }
+  .helloarea {
+    display: flex;
+    flex-direction: column;
+  }
+  .username {
+    font-size: smaller;
+    text-align: right;
+  }
+  .username-desktop {
+    display: none;
+  }
+  .username-mobile {
+    display: contents;
+  }
 }

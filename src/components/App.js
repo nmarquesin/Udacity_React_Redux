@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { handleInitialData } from "../actions/getData";
-import QuestionsList from "./QuestionsList";
+import QuestionList from "./QuestionList";
 import Question from "./Question";
 import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
@@ -40,7 +40,7 @@ class App extends Component {
               <Route path="/question/:id" children={<Question />} />
 
               <Route exact path="/">
-                {loggedUser ? <QuestionsList /> : <Redirect to="/login" />}
+                {loggedUser ? <QuestionList /> : <Redirect to="/login" />}
               </Route>
             </Switch>
           </React.Fragment>

@@ -9,7 +9,9 @@ import {
   answeredByUser,
 } from "../utils/commonFunctions";
 
-class QuestionsList extends Component {
+import styles from "./QuestionList.module.scss";
+
+class QuestionList extends Component {
   state = {
     showUnansweredQ: true,
   };
@@ -57,21 +59,30 @@ class QuestionsList extends Component {
             Answered Questions
           </button>
         </div>
-        <ul>
-          {questionIds.map((id) => (
-            <li key={id} style={{ listStyleType: "none" }}>
-              <QuestionCard
-                id={id}
-                author={getAuthor(questions, id)}
-                avatar={getAvatar(users, questions, id)}
-                qText={getText(1, questions, id)}
-                answered={answeredByUser(id, users, activeUser)}
-                showUnansweredQ={this.state.showUnansweredQ}
-                onHandleClick={this.handleClick}
-              />
-            </li>
-          ))}
-        </ul>
+        <div>
+          <ul
+            style={{
+              border: "solid green",
+              display: "flex",
+              flexWrap: "wrap",
+              flexDirection: "column",
+            }}
+          >
+            {questionIds.map((id) => (
+              <li key={id} style={{ listStyleType: "none" }}>
+                <QuestionCard
+                  id={id}
+                  author={getAuthor(questions, id)}
+                  avatar={getAvatar(users, questions, id)}
+                  qText={getText(1, questions, id)}
+                  answered={answeredByUser(id, users, activeUser)}
+                  showUnansweredQ={this.state.showUnansweredQ}
+                  onHandleClick={this.handleClick}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }
@@ -89,4 +100,4 @@ function mapStateToProps({ questions, users, activeUser, selectedQuestion }) {
   };
 }
 
-export default connect(mapStateToProps)(QuestionsList);
+export default connect(mapStateToProps)(QuestionList);
