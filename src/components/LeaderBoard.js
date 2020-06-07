@@ -32,13 +32,28 @@ class LeaderBoard extends Component {
     const obj = this.usersByScore();
     return Object.keys(obj).sort((a, b) => obj[b] - obj[a]);
   };
+  makeScoreBoard = () => {
+    const users = this.usersOrderedByScore();
+    let scoreBoard = {};
+    let counter = 1;
+    for (const i in users) {
+      scoreBoard[users[i]] = counter;
+      counter++;
+    }
+    // console.log("make score board ===> ", scoreBoard);
+    // console.log("users ===> ", users);
+    return scoreBoard;
+  };
 
   render() {
     const { userIds, users } = this.props;
+    // console.log("users array==> ", users);
+    const scoreBoard = this.makeScoreBoard();
+    // console.log("Printing scoreBoard: ", scoreBoard);
+    // console.log("Printing scoreBoard JohnDOe: ", scoreBoard["johndoe"]);
     return (
       <div className={styles.container}>
-        Leaderboard
-        <div>
+        <div className={styles["inner-container"]}>
           {this.usersOrderedByScore().map((user) => (
             <UserScoreCard
               name={users[user].name}
@@ -46,6 +61,7 @@ class LeaderBoard extends Component {
               questions={this.calcQ(users[user])}
               score={this.calcScore(users[user])}
               avatar={users[user].avatarURL}
+              pos={scoreBoard[users[user].id]}
             />
           ))}
         </div>

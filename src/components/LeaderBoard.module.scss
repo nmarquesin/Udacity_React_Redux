@@ -1,7 +1,11 @@
 @import "../utils/variables.scss";
 
 .container {
-  border: solid $color1;
-  border-top: none;
   margin: 0 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inner-container {
+  max-width: 1200px;
 }
