@@ -1,30 +1,40 @@
-.q-area {
-  background-color: pink;
-  text-align: center;
-}
+@import "../utils/variables.scss";
+@import "../utils/common-classes.scss";
+
 .a-area {
-  border: solid green;
+  // border: solid green;
   border-radius: 5px;
   margin: 15px;
 }
 .a-badge {
   color: yellow;
 }
-.div1 {
-  margin: 10px;
-  border: solid grey;
-  border-radius: 5px;
-}
-.div2 {
-  background-color: grey;
-  color: white;
-  padding: 10px 20px;
-  font-style: italic;
-}
-.div3 {
+.container {
   display: flex;
-  align-items: center;
+  justify-content: center;
+}
+.question-card {
+  margin: 10px;
+  border: thin solid $color4;
+  border-radius: 5px;
+  margin-top: 50px;
+  max-width: 600px;
+}
+
+.question-prompt {
+  font-size: large;
 }
 .img {
-  border-right: solid grey;
+  margin: 10px 0;
+}
+.button {
+  // border: solid pink;
+  width: 100%;
+  margin: 10px 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .question-area {
+    // border: solid blue;
+  }
 }

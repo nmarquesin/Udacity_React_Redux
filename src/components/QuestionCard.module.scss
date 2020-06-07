@@ -1,40 +1,23 @@
 @import "../utils/variables.scss";
+@import "../utils/common-classes.scss";
 
 .card-container {
   margin: 10px;
-  border: solid $color1;
+  border: thin solid $color4;
   border-radius: 5px;
 }
 
-.card-title {
-  background-color: $color1;
-  color: white;
-  padding: 10px 20px;
-  font-style: italic;
-}
-
-.card-body {
-  display: flex;
-  align-items: center;
-}
 .card-avatar {
-  border-right: solid $color1;
+  padding: 10px 0;
 }
 
-.div4 {
-  text-align: center;
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
-  background-color: yellow;
-  transform: rotate(20deg);
-  margin-top: -50px;
-  margin-left: 500px;
+.question-text {
+  margin-bottom: 10px;
+  padding-top: 20px;
+}
+.btn {
+  width: 100%;
 }
 
-.question-area {
-  // padding: auto 30px;
-  margin: 0 50px;
-  // border: solid blue;
-  text-align: center;
+@media only screen and (max-width: 600px) {
 }

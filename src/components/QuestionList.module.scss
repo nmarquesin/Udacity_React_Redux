@@ -1,1 +1,45 @@
 @import "../utils/variables.scss";
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+.inner-container {
+  margin-top: 20px;
+  max-width: 800px;
+  //   border: thin solid $color3;
+}
+
+.active-tab {
+  background-color: $color1;
+  color: $color5;
+}
+.inactive-tab {
+  background-color: $color5;
+  color: $color3;
+}
+.inactive-tab,
+.active-tab {
+  width: 50%;
+  border: thin solid $color1;
+  outline: none !important;
+}
+
+.list-area {
+  border: thin solid $color1;
+  border-top: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 600px) {
+  .inner-container {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .inactive-tab,
+  .active-tab {
+    font-size: small;
+  }
+}

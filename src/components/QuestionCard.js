@@ -24,32 +24,27 @@ const QuestionCard = (props) => {
       </button>
     );
   };
-  const { id, author, avatar, answered, qText, showUnansweredQ } = props;
+  const { id, author, avatar, answered, qText, showUnansweredQ, name } = props;
   console.log("styles ", styles);
   return (
     <div>
       {!answered === showUnansweredQ ? (
         <div className={styles["card-container"]}>
-          <div className={styles["card-title"]}>{author} asks:</div>
+          <div className={styles["card-title"]}>{name} asks:</div>
           <div className={styles["card-body"]}>
-            <div>
+            <div className={styles["card-avatar"]}>
               <img
                 width="100px"
                 height="100px"
                 src={avatar}
                 alt="user avatar"
-                className={styles["card-avatar"]}
+                className={styles.avatar}
               />
             </div>
             <div className={styles["question-area"]}>
-              Would you rather {qText} or ... ?
-              {answered ? (
-                <div className={styles.div4}>
-                  <span>Question Answered!</span>
-                </div>
-              ) : (
-                ""
-              )}
+              <div className={styles["question-text"]}>
+                Would you rather {qText} or ... ?
+              </div>
               <div>{renderButton(answered, id)}</div>
             </div>
           </div>

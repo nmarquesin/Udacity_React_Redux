@@ -21,14 +21,26 @@ class Answer extends Component {
   askQuestion = () => {
     const { questions, qId } = this.props;
     return (
-      <div className={styles.qArea}>
-        <p>Would you rather...</p>
-        <button value="optionOne" onClick={this.handleClick}>
-          {getText(1, questions, qId)}
-        </button>
-        <button value="optionTwo" onClick={this.handleClick}>
-          {getText(2, questions, qId)}
-        </button>
+      <div className={styles["question-area"]}>
+        <div className={styles["question-prompt"]}>Would you rather...</div>
+        <div className={styles.button}>
+          <button
+            className={styles.btn}
+            value="optionOne"
+            onClick={this.handleClick}
+          >
+            {getText(1, questions, qId)}
+          </button>
+        </div>
+        <div className={styles.button}>
+          <button
+            className={styles.btn}
+            value="optionTwo"
+            onClick={this.handleClick}
+          >
+            {getText(2, questions, qId)}
+          </button>
+        </div>
       </div>
     );
   };
@@ -86,23 +98,25 @@ class Answer extends Component {
     console.log("users [active user] =====> ", users[activeUser["id"]]);
     return (
       <div>
-        <div className={styles.div1}>
-          <div className={styles.div2}>
-            {getAuthorsName(users, questions, qId)} asks:
-          </div>
-          <div className={styles.div3}>
-            <div>
-              <img
-                width="100px"
-                height="100px"
-                src={getAvatar(users, questions, qId)}
-                alt="user avatar"
-                className={styles.img}
-              />
+        <div className={styles.container}>
+          <div className={styles["question-card"]}>
+            <div className={styles["card-title"]}>
+              {getAuthorsName(users, questions, qId)} asks:
             </div>
-            {answeredByUser(qId, users, activeUser)
-              ? this.showPoll()
-              : this.askQuestion()}
+            <div className={styles["card-body"]}>
+              <div className={styles.img}>
+                <img
+                  width="100px"
+                  height="100px"
+                  src={getAvatar(users, questions, qId)}
+                  alt="user avatar"
+                  className={styles.avatar}
+                />
+              </div>
+              {answeredByUser(qId, users, activeUser)
+                ? this.showPoll()
+                : this.askQuestion()}
+            </div>
           </div>
         </div>
       </div>
