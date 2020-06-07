@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import UserScoreCard from "./UserScoreCard";
 
+import styles from "./LeaderBoard.module.scss";
+
 class LeaderBoard extends Component {
   calcQ = (user) => {
     return user.questions.length;
@@ -34,7 +36,7 @@ class LeaderBoard extends Component {
   render() {
     const { userIds, users } = this.props;
     return (
-      <div>
+      <div className={styles.container}>
         Leaderboard
         <div>
           {this.usersOrderedByScore().map((user) => (
