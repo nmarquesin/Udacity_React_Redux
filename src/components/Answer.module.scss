@@ -1,13 +1,62 @@
 @import "../utils/variables.scss";
 @import "../utils/common-classes.scss";
 
-.a-area {
-  // border: solid green;
+.answer-area-winner {
+  border: thin solid $color1;
+  background-color: $color4;
   border-radius: 5px;
   margin: 15px;
 }
-.a-badge {
-  color: yellow;
+.answer-area-loser {
+  border: thin solid $color4;
+  border-radius: 5px;
+  margin: 15px;
+}
+.results {
+  margin: 15px;
+  font-size: large;
+  font-weight: bold;
+}
+.badge {
+  background-color: $color2;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  text-align: center;
+}
+.progress-bar-area {
+  position: relative;
+  // border: solid blue;
+  width: fit-content;
+  text-align: center;
+}
+.progress-bar-percentage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: whiteSmoke;
+  border-radius: 2px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) inset;
+
+  width: 250px;
+  height: 20px;
+
+  position: relative;
+  display: block;
+}
+.centered {
+  text-align: center;
 }
 .container {
   display: flex;

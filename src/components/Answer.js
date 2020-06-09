@@ -57,34 +57,84 @@ class Answer extends Component {
     const { questions, qId } = this.props;
     return getVotes(1, questions, qId) + getVotes(2, questions, qId);
   };
-  ss;
+
+  askQuestionHeader = () => {
+    const { users, questions, qId } = this.props;
+    return (
+      <div className={styles["card-title"]}>
+        {getAuthorsName(users, questions, qId)} asks:
+      </div>
+    );
+  };
+
+  showPollHeader = () => {
+    const { users, questions, qId } = this.props;
+    return (
+      <div className={styles["card-title"]}>
+        Asked by {getAuthorsName(users, questions, qId)}
+      </div>
+    );
+  };
+  isWinningAnswer = (answer) => {
+    const { questions, qId } = this.props;
+    const winningAnswer =
+      getVotes(1, questions, qId) >= getVotes(2, questions, qId) ? 1 : 2;
+    return answer === winningAnswer;
+  };
+  percentageBar = (percentage) => {
+    return (
+      <div className={styles["progress-bar-area"]}>
+        <progress
+          className={styles["progress-bar"]}
+          max="100"
+          value={percentage}
+        ></progress>
+        <div className={styles["progress-bar-percentage"]}>
+          {Math.round(percentage)}%
+        </div>
+      </div>
+    );
+  };
   showPoll = () => {
     const { questions, qId, users, activeUser } = this.props;
     return (
       <div className={styles.qArea}>
-        <p>Results for question: </p>
+        <p className={styles.results}>Results: </p>
 
-        <div className={styles.aArea}>
+        <div
+          className={
+            this.isWinningAnswer(1)
+              ? styles["answer-area-winner"]
+              : styles["answer-area-loser"]
+          }
+        >
           {votedByUser(qId, users, activeUser) === "optionOne" ? (
-            <div className={styles.aBadge}>your vote</div>
+            <div className={styles.badge}>your vote</div>
           ) : (
             ""
           )}
           <p>Would you rather {getText(1, questions, qId)}?</p>
-          <p>{this.getPercentage(1)}% of votes</p>
-          <p>
+
+          <p>{this.percentageBar(this.getPercentage(1))}</p>
+          <p className={styles.centered}>
             {getVotes(1, questions, qId)} out of {this.getTotal()} votes
           </p>
         </div>
-        <div className={styles.aArea}>
+        <div
+          className={
+            this.isWinningAnswer(2)
+              ? styles["answer-area-winner"]
+              : styles["answer-area-loser"]
+          }
+        >
           {votedByUser(qId, users, activeUser) === "optionTwo" ? (
-            <div className={styles.aBadge}>your vote</div>
+            <div className={styles.badge}>your vote</div>
           ) : (
             ""
           )}
           <p>Would you rather {getText(2, questions, qId)}?</p>
-          <p>{this.getPercentage(2)}% of votes</p>
-          <p>
+          <p>{this.percentageBar(this.getPercentage(2))}</p>
+          <p className={styles.centered}>
             {getVotes(2, questions, qId)} out of {this.getTotal()} votes
           </p>
         </div>
@@ -100,9 +150,9 @@ class Answer extends Component {
       <div>
         <div className={styles.container}>
           <div className={styles["question-card"]}>
-            <div className={styles["card-title"]}>
-              {getAuthorsName(users, questions, qId)} asks:
-            </div>
+            {answeredByUser(qId, users, activeUser)
+              ? this.showPollHeader()
+              : this.askQuestionHeader()}
             <div className={styles["card-body"]}>
               <div className={styles.img}>
                 <img
