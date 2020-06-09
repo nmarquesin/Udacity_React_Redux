@@ -26,9 +26,12 @@
 }
 .progress-bar-area {
   position: relative;
-  // border: solid blue;
-  width: fit-content;
+  width: 100%;
   text-align: center;
+  // border: solid purple;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 .progress-bar-percentage {
   width: 100%;
@@ -38,7 +41,15 @@
   left: 0;
   z-index: 10;
 }
+progress[value] {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: whiteSmoke;
 
+  width: 250px;
+  height: 20px;
+}
 .progress-bar {
   width: 100%;
   height: 100%;
@@ -54,6 +65,8 @@
 
   position: relative;
   display: block;
+  margin: 0 auto;
+  // border: solid white;
 }
 .centered {
   text-align: center;
@@ -69,7 +82,9 @@
   margin-top: 50px;
   max-width: 600px;
 }
-
+.question-area {
+  border: solid green;
+}
 .question-prompt {
   font-size: large;
 }
@@ -84,6 +99,18 @@
 
 @media only screen and (max-width: 600px) {
   .question-area {
+  }
+  .question-card {
     // border: solid blue;
+    margin-top: 50px;
+    margin-right: 5%;
+    margin-left: 5%;
+    max-width: fit-content;
+  }
+  .progress-bar {
+    width: 150px;
+  }
+  progress[value] {
+    width: 150px;
   }
 }

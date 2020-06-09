@@ -99,7 +99,7 @@ class Answer extends Component {
     const { questions, qId, users, activeUser } = this.props;
     return (
       <div className={styles.qArea}>
-        <p className={styles.results}>Results: </p>
+        <div className={styles.results}>Results: </div>
 
         <div
           className={
@@ -113,12 +113,12 @@ class Answer extends Component {
           ) : (
             ""
           )}
-          <p>Would you rather {getText(1, questions, qId)}?</p>
+          <div>Would you rather {getText(1, questions, qId)}?</div>
 
-          <p>{this.percentageBar(this.getPercentage(1))}</p>
-          <p className={styles.centered}>
+          <div>{this.percentageBar(this.getPercentage(1))}</div>
+          <div className={styles.centered}>
             {getVotes(1, questions, qId)} out of {this.getTotal()} votes
-          </p>
+          </div>
         </div>
         <div
           className={
@@ -132,11 +132,11 @@ class Answer extends Component {
           ) : (
             ""
           )}
-          <p>Would you rather {getText(2, questions, qId)}?</p>
-          <p>{this.percentageBar(this.getPercentage(2))}</p>
-          <p className={styles.centered}>
+          <div>Would you rather {getText(2, questions, qId)}?</div>
+          <div>{this.percentageBar(this.getPercentage(2))}</div>
+          <div className={styles.centered}>
             {getVotes(2, questions, qId)} out of {this.getTotal()} votes
-          </p>
+          </div>
         </div>
       </div>
     );
