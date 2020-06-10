@@ -43,6 +43,8 @@ class Login extends Component {
               list="users"
               onChange={this.change}
               value={this.state.user}
+              className={styles["input-field"]}
+              placeholder="Select user"
             />
             <datalist id="users">
               {Object.keys(users).map((user) => (

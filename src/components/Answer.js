@@ -17,30 +17,26 @@ class Answer extends Component {
     const { dispatch, qId } = this.props;
     dispatch(handleSaveAnswer(qId, event.target.value));
   };
-
-  askQuestion = () => {
+  makeButton = (opt, option) => {
     const { questions, qId } = this.props;
+    return (
+      <div className={styles.button}>
+        <button
+          className={styles.btn}
+          value={option}
+          onClick={this.handleClick}
+        >
+          {getText(opt, questions, qId)}
+        </button>
+      </div>
+    );
+  };
+  askQuestion = () => {
     return (
       <div className={styles["question-area"]}>
         <div className={styles["question-prompt"]}>Would you rather...</div>
-        <div className={styles.button}>
-          <button
-            className={styles.btn}
-            value="optionOne"
-            onClick={this.handleClick}
-          >
-            {getText(1, questions, qId)}
-          </button>
-        </div>
-        <div className={styles.button}>
-          <button
-            className={styles.btn}
-            value="optionTwo"
-            onClick={this.handleClick}
-          >
-            {getText(2, questions, qId)}
-          </button>
-        </div>
+        {this.makeButton(1, "optionOne")}
+        {this.makeButton(2, "optionTwo")}
       </div>
     );
   };
@@ -95,49 +91,40 @@ class Answer extends Component {
       </div>
     );
   };
-  showPoll = () => {
+  showResultForQuestion(opt, option) {
     const { questions, qId, users, activeUser } = this.props;
     return (
-      <div className={styles.qArea}>
+      <div
+        className={
+          this.isWinningAnswer(opt)
+            ? styles["answer-area-winner"]
+            : styles["answer-area-loser"]
+        }
+      >
+        {votedByUser(qId, users, activeUser) === option ? (
+          <div className={styles["badge-area"]}>
+            <div className={styles.badge}>your vote</div>
+          </div>
+        ) : (
+          ""
+        )}
+        <div className={styles["question-prompt2"]}>
+          Would you rather {getText(opt, questions, qId)}?
+        </div>
+
+        <div>{this.percentageBar(this.getPercentage(opt))}</div>
+        <div className={styles.centered}>
+          {getVotes(opt, questions, qId)} out of {this.getTotal()} votes
+        </div>
+      </div>
+    );
+  }
+  showPoll = () => {
+    return (
+      <div className={styles["question-area"]}>
         <div className={styles.results}>Results: </div>
-
-        <div
-          className={
-            this.isWinningAnswer(1)
-              ? styles["answer-area-winner"]
-              : styles["answer-area-loser"]
-          }
-        >
-          {votedByUser(qId, users, activeUser) === "optionOne" ? (
-            <div className={styles.badge}>your vote</div>
-          ) : (
-            ""
-          )}
-          <div>Would you rather {getText(1, questions, qId)}?</div>
-
-          <div>{this.percentageBar(this.getPercentage(1))}</div>
-          <div className={styles.centered}>
-            {getVotes(1, questions, qId)} out of {this.getTotal()} votes
-          </div>
-        </div>
-        <div
-          className={
-            this.isWinningAnswer(2)
-              ? styles["answer-area-winner"]
-              : styles["answer-area-loser"]
-          }
-        >
-          {votedByUser(qId, users, activeUser) === "optionTwo" ? (
-            <div className={styles.badge}>your vote</div>
-          ) : (
-            ""
-          )}
-          <div>Would you rather {getText(2, questions, qId)}?</div>
-          <div>{this.percentageBar(this.getPercentage(2))}</div>
-          <div className={styles.centered}>
-            {getVotes(2, questions, qId)} out of {this.getTotal()} votes
-          </div>
-        </div>
+        {this.showResultForQuestion(1, "optionOne")}
+        {this.showResultForQuestion(2, "optionTwo")}
       </div>
     );
   };

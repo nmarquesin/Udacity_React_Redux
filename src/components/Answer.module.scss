@@ -6,21 +6,35 @@
   background-color: $color4;
   border-radius: 5px;
   margin: 15px;
+  width: 310px;
 }
 .answer-area-loser {
   border: thin solid $color4;
   border-radius: 5px;
-  margin: 15px;
+  margin: 15px 15px 40px;
+  width: 310px;
 }
 .results {
   margin: 15px;
   font-size: large;
   font-weight: bold;
 }
+.badge-area {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  width: inherit;
+  z-index: 2;
+}
 .badge {
+  position: relative;
+  margin-top: -35px;
+  margin-right: -15px;
+  padding-top: 5px;
   background-color: $color2;
   width: 50px;
   height: 50px;
+  font-size: small;
   border-radius: 25px;
   text-align: center;
 }
@@ -28,7 +42,6 @@
   position: relative;
   width: 100%;
   text-align: center;
-  // border: solid purple;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -41,14 +54,22 @@
   left: 0;
   z-index: 10;
 }
-progress[value] {
-  /* Reset the default appearance */
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: whiteSmoke;
-
-  width: 250px;
-  height: 20px;
+progress::-moz-progress-bar {
+  background: $color2;
+  border: 1px solid $color3;
+}
+progress::-moz-progress-value {
+  background: $color1;
+}
+progress::-webkit-progress-bar {
+  background: $color5;
+  border: 1px solid $color3;
+}
+progress::-webkit-progress-value {
+  background: $color1;
+}
+progress {
+  color: $color1;
 }
 .progress-bar {
   width: 100%;
@@ -57,19 +78,15 @@ progress[value] {
   top: 0;
   left: 0;
   background-color: whiteSmoke;
-  border-radius: 2px;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) inset;
-
   width: 250px;
   height: 20px;
-
   position: relative;
   display: block;
-  margin: 0 auto;
-  // border: solid white;
+  margin: 10px auto;
 }
 .centered {
   text-align: center;
+  font-weight: normal;
 }
 .container {
   display: flex;
@@ -83,34 +100,43 @@ progress[value] {
   max-width: 600px;
 }
 .question-area {
-  border: solid green;
+  height: fit-content;
 }
 .question-prompt {
   font-size: large;
+}
+.question-prompt2 {
+  padding: 10px 5px;
+  font-weight: normal;
 }
 .img {
   margin: 10px 0;
 }
 .button {
-  // border: solid pink;
   width: 100%;
   margin: 10px 0;
 }
 
 @media only screen and (max-width: 600px) {
-  .question-area {
-  }
   .question-card {
-    // border: solid blue;
     margin-top: 50px;
     margin-right: 5%;
     margin-left: 5%;
-    max-width: fit-content;
+    max-width: 90%;
   }
   .progress-bar {
-    width: 150px;
+    width: 100px;
   }
   progress[value] {
-    width: 150px;
+    width: 100px;
+  }
+  .answer-area-winner,
+  .answer-area-loser {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .badge-area {
+    width: 50%;
   }
 }
