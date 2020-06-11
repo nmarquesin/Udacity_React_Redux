@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { handleSaveAnswer } from "../actions/getData";
 import {
   getAvatar,
+  // getAvatar2,
   getAuthorsName,
+  getAuthor,
   getText,
   getVotes,
   answeredByUser,
@@ -11,6 +13,7 @@ import {
 } from "../utils/commonFunctions";
 
 import styles from "./Answer.module.scss";
+import Avatar from "./Avatar";
 
 class Answer extends Component {
   handleClick = (event) => {
@@ -131,8 +134,9 @@ class Answer extends Component {
 
   render() {
     const { users, questions, qId, activeUser } = this.props;
-    console.log("active user =====> ", activeUser["id"]);
-    console.log("users [active user] =====> ", users[activeUser["id"]]);
+    // console.log("active user =====> ", activeUser["id"]);
+    // console.log("users [active user] =====> ", users[activeUser["id"]]);
+    // const avatar = getAvatar2(users, questions, qId);
     return (
       <div>
         <div className={styles.container}>
@@ -142,13 +146,7 @@ class Answer extends Component {
               : this.askQuestionHeader()}
             <div className={styles["card-body"]}>
               <div className={styles.img}>
-                <img
-                  width="100px"
-                  height="100px"
-                  src={getAvatar(users, questions, qId)}
-                  alt="user avatar"
-                  className={styles.avatar}
-                />
+                <Avatar id={getAuthor(questions, qId)} />
               </div>
               {answeredByUser(qId, users, activeUser)
                 ? this.showPoll()

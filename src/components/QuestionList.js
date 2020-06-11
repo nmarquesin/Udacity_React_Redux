@@ -5,7 +5,6 @@ import { setSelectedQuestion } from "../actions/selectedQ";
 import {
   getAuthor,
   getAuthorsName,
-  getAvatar,
   getText,
   answeredByUser,
 } from "../utils/commonFunctions";
@@ -83,7 +82,6 @@ class QuestionList extends Component {
                     id={id}
                     author={getAuthor(questions, id)}
                     name={getAuthorsName(users, questions, id)}
-                    avatar={getAvatar(users, questions, id)}
                     qText={getText(1, questions, id)}
                     answered={answeredByUser(id, users, activeUser)}
                     showUnansweredQ={this.state.showUnansweredQ}

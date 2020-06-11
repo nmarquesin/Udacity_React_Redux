@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 import styles from "./QuestionCard.module.scss";
+import Avatar from "./Avatar";
 
 const QuestionCard = (props) => {
   let history = useHistory();
@@ -24,8 +25,7 @@ const QuestionCard = (props) => {
       </button>
     );
   };
-  const { id, author, avatar, answered, qText, showUnansweredQ, name } = props;
-  console.log("styles ", styles);
+  const { id, author, answered, qText, showUnansweredQ, name } = props;
   return (
     <div>
       {!answered === showUnansweredQ ? (
@@ -33,13 +33,7 @@ const QuestionCard = (props) => {
           <div className={styles["card-title"]}>{name} asks:</div>
           <div className={styles["card-body"]}>
             <div className={styles["card-avatar"]}>
-              <img
-                width="100px"
-                height="100px"
-                src={avatar}
-                alt="user avatar"
-                className={styles.avatar}
-              />
+              <Avatar id={author} />
             </div>
             <div className={styles["question-area"]}>
               <div className={styles["question-text"]}>

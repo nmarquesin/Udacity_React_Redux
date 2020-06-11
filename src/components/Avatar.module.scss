@@ -1,0 +1,21 @@
+.sarahedo,
+.tylermcginnis,
+.johndoe {
+  background-image: url(../utils/avatars.jpeg);
+  background-repeat: no-repeat;
+  height: 240px;
+  width: 240px;
+  border-radius: 120px;
+  transform: scale(0.42, 0.42);
+  margin-top: -70px;
+  margin-left: -60px;
+}
+.sarahedo {
+  background-position: -104px -493px;
+}
+.tylermcginnis {
+  background-position: -104px -172px;
+}
+.johndoe {
+  background-position: -104px -812px;
+}

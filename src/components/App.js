@@ -10,6 +10,7 @@ import Login from "./Login";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./NavBar";
+import Avatar from "./Avatar";
 
 class App extends Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class App extends Component {
 
   render() {
     const { loggedUser } = this.props;
+
     return (
       <div className="App">
         {this.props.loading ? null : (
