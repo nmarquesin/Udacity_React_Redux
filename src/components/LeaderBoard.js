@@ -8,15 +8,12 @@ class LeaderBoard extends Component {
   calcQ = (user) => {
     return user.questions.length;
   };
-
   calcA = (user) => {
     return Object.keys(user.answers).length;
   };
-
   calcScore = (user) => {
     return this.calcQ(user) + this.calcA(user);
   };
-
   usersByScore = () => {
     const obj = this.props.userIds.reduce(
       (o, key) => ({
@@ -27,7 +24,6 @@ class LeaderBoard extends Component {
     );
     return obj;
   };
-
   usersOrderedByScore = () => {
     const obj = this.usersByScore();
     return Object.keys(obj).sort((a, b) => obj[b] - obj[a]);
@@ -40,17 +36,11 @@ class LeaderBoard extends Component {
       scoreBoard[users[i]] = counter;
       counter++;
     }
-    // console.log("make score board ===> ", scoreBoard);
-    // console.log("users ===> ", users);
     return scoreBoard;
   };
-
   render() {
     const { userIds, users } = this.props;
-    // console.log("users array==> ", users);
     const scoreBoard = this.makeScoreBoard();
-    // console.log("Printing scoreBoard: ", scoreBoard);
-    // console.log("Printing scoreBoard JohnDOe: ", scoreBoard["johndoe"]);
     return (
       <div className={styles.container}>
         <div className={styles["inner-container"]}>
@@ -60,7 +50,7 @@ class LeaderBoard extends Component {
               answers={this.calcA(users[user])}
               questions={this.calcQ(users[user])}
               score={this.calcScore(users[user])}
-              avatar={users[user].avatarURL}
+              avatarId={users[user].id}
               pos={scoreBoard[users[user].id]}
             />
           ))}

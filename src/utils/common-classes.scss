@@ -1,8 +1,10 @@
+@import "./variables.scss";
+body {
+  font-family: $font-family;
+}
 .avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  margin: 0 10px;
+  width: 120px;
+  height: 120px;
 }
 .btn {
   background-color: $color2;
@@ -17,34 +19,26 @@
   background-color: $color4;
   color: $color5;
   padding: 10px 20px;
-  // font-style: italic;
   font-weight: bold;
 }
 .card-body {
   display: flex;
   align-items: center;
   width: 500px;
-  // border: solid blue;
 }
 .question-area {
-  // border: solid red;
   width: 100%;
   text-align: left;
   font-weight: bold;
   padding: 10px 20px;
   border-left: thin solid $color4;
   height: 120px;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: center;
 }
 @media only screen and (max-width: 600px) {
   .avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    // margin: auto;
+    width: 60px;
+    height: 60px;
+    transform: scale(0.5, 0.5) translate(-30px, -30px);
   }
   .card-body {
     width: 100%;

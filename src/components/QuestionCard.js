@@ -1,12 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import Avatar from "./Avatar";
 
 import styles from "./QuestionCard.module.scss";
-import Avatar from "./Avatar";
 
 const QuestionCard = (props) => {
   let history = useHistory();
-
   const handleClick = (value) => {
     props.onHandleClick(value);
     const path = "/question/" + value;
@@ -32,12 +31,12 @@ const QuestionCard = (props) => {
         <div className={styles["card-container"]}>
           <div className={styles["card-title"]}>{name} asks:</div>
           <div className={styles["card-body"]}>
-            <div className={styles["card-avatar"]}>
+            <div className={styles["avatar"]}>
               <Avatar id={author} />
             </div>
             <div className={styles["question-area"]}>
               <div className={styles["question-text"]}>
-                Would you rather {qText} or ... ?
+                Would you rather {qText} or...
               </div>
               <div>{renderButton(answered, id)}</div>
             </div>

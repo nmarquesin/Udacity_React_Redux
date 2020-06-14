@@ -9,19 +9,15 @@ body {
 ul {
   display: flex;
   list-style-type: none;
-  //   border: solid red;
   padding: 0;
   margin: 0;
   li a {
     color: $color3;
     padding: 0 10px 10px 10px;
-    // margin-bottom: 20px;
   }
   li a:hover {
     color: $color5;
     text-decoration: none;
-    // background-color: $color1;
-    // border-radius: 15px 15px 0 0;
   }
 }
 .container {
@@ -37,22 +33,16 @@ ul {
   height: 100px;
 }
 .navitems {
-  // border: solid orange;
   display: flex;
   align-items: center;
-  // padding-bottom: 5px;
   margin-right: 10px;
-  //   border: solid green;
   a {
     color: $color3;
     padding: 0 10px 0 10px;
-    // margin-bottom: 20px;
   }
   a:hover {
     color: $color5;
     text-decoration: none;
-    // background-color: $color1;
-    // border-radius: 15px 15px 0 0;
   }
 }
 
@@ -60,7 +50,6 @@ ul {
   display: flex;
   align-items: center;
   padding-bottom: 5px;
-  //   border: solid red;
 }
 .username {
   margin-right: 10px;
@@ -70,14 +59,12 @@ ul {
 .tab {
   padding-top: 10px;
   margin: 0 5px;
-  // border: solid red;
 }
 .tab:hover {
   background-color: $color1;
   border-radius: 10px 10px 0 0;
 }
 .tabselected {
-  // border: solid red;
   margin: 0 5px;
   padding-top: 10px;
   border-radius: 10px 10px 0 0;
@@ -86,23 +73,6 @@ ul {
     color: $color5;
   }
 }
-// .tab:hover {
-//   border-bottom: 30px solid $color1;
-//   border-left: 20px solid transparent;
-//   border-right: 20px solid transparent;
-//   height: 0;
-//   margin-bottom: -6px;
-// }
-// .tabselected {
-//   border-bottom: 30px solid $color1;
-//   border-left: 20px solid transparent;
-//   border-right: 20px solid transparent;
-//   height: 0;
-//   margin-bottom: -6px;
-//   a {
-//     color: $color5;
-//   }
-// }
 .username-mobile {
   display: none;
 }

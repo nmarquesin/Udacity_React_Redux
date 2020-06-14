@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import QuestionCard from "./QuestionCard";
 import { setSelectedQuestion } from "../actions/selectedQ";
@@ -15,7 +15,6 @@ class QuestionList extends Component {
   state = {
     showUnansweredQ: true,
   };
-
   selectQuestionGroup(value) {
     switch (value) {
       case "answered":
@@ -28,12 +27,10 @@ class QuestionList extends Component {
         }));
     }
   }
-
   handleClick = (value) => {
     this.props.dispatch(setSelectedQuestion(value));
     return;
   };
-
   render() {
     const { questionIds, questions, users, activeUser } = this.props;
     return (

@@ -1,9 +1,8 @@
-@import "../utils/variables.scss";
 @import "../utils/common-classes.scss";
 
 .answer-area-winner {
-  border: thin solid $color1;
-  background-color: $color4;
+  border: thin solid $color4;
+  background-color: $color6;
   border-radius: 5px;
   margin: 15px;
   width: 310px;
@@ -25,6 +24,7 @@
   justify-content: flex-end;
   width: inherit;
   z-index: 2;
+  color: $color5;
 }
 .badge {
   position: relative;
@@ -55,21 +55,21 @@
   z-index: 10;
 }
 progress::-moz-progress-bar {
-  background: $color2;
-  border: 1px solid $color3;
+  background: $color5;
+  border: 1px solid $color4;
 }
 progress::-moz-progress-value {
-  background: $color1;
+  background: $color4;
 }
 progress::-webkit-progress-bar {
   background: $color5;
   border: 1px solid $color3;
 }
 progress::-webkit-progress-value {
-  background: $color1;
+  background: $color4;
 }
 progress {
-  color: $color1;
+  color: $color4;
 }
 .progress-bar {
   width: 100%;
@@ -109,12 +109,6 @@ progress {
   padding: 10px 5px;
   font-weight: normal;
 }
-.img {
-  margin: 10px 0;
-  width: 120px;
-  height: 120px;
-}
-
 .button {
   width: 100%;
   margin: 10px 0;
@@ -123,9 +117,7 @@ progress {
 @media only screen and (max-width: 600px) {
   .question-card {
     margin-top: 50px;
-    margin-right: 5%;
-    margin-left: 5%;
-    max-width: 90%;
+    width: 100%;
   }
   .progress-bar {
     width: 100px;
@@ -135,11 +127,14 @@ progress {
   }
   .answer-area-winner,
   .answer-area-loser {
-    width: 90%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
   .badge-area {
-    width: 50%;
+    width: 60%;
+  }
+  .results {
+    margin: 0;
   }
 }

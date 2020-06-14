@@ -9,7 +9,6 @@ class Login extends Component {
     user: "",
     userId: "",
   };
-
   change = (event) => {
     const { users } = this.props;
     for (let user in users) {
@@ -21,20 +20,20 @@ class Login extends Component {
     }
     return this.setState({ user: event.target.value });
   };
-
   click = () => {
     const { dispatch } = this.props;
     dispatch(setActiveUser(this.state.userId));
   };
-
   render() {
     const { users } = this.props;
     return (
       <div className={styles.container}>
         <div className={styles.card}>
           <div className={styles.header}>
-            <h3>Welcome to the Would You Rather App</h3>
-            <h4>Please sign in to continue</h4>
+            <div className={styles.title}>
+              Welcome to the <span>Would You Rather App</span>
+            </div>
+            <div className={styles.subtitle}>Please sign in to continue</div>
           </div>
           <div className={styles.select}>
             <input

@@ -13,14 +13,11 @@ import styles from "./NavBar.module.scss";
 
 const NavBar = ({ dispatch, loggedUser, users }) => {
   let history = useHistory();
-
   const click = () => {
     dispatch(setActiveUser(""));
     history.push("/login");
   };
-
   let location = useLocation();
-
   return (
     <React.Fragment>
       <div className={styles.container}>

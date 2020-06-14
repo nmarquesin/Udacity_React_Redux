@@ -1,4 +1,3 @@
-@import "../utils/variables.scss";
 @import "../utils/common-classes.scss";
 
 .container {
@@ -21,17 +20,25 @@
       width: 100%;
       background-color: $color4;
       text-align: center;
+      color: $color5;
+      .title {
+        font-size: xx-large;
+        span {
+          font-weight: bolder;
+        }
+      }
+      .subtitle {
+        font-style: italic;
+      }
     }
     .select {
       padding-top: 50px;
       width: 80%;
     }
     .input-field {
-      // border: solid green;
       width: 80%;
     }
     .button {
-      // border: solid red;
       padding: 20px 0;
       padding-bottom: 50px;
       width: 64%;
