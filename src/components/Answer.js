@@ -9,9 +9,10 @@ import {
   answeredByUser,
   votedByUser,
 } from "../utils/commonFunctions";
+import Avatar from "./Avatar";
+import Page404 from "./Page404";
 
 import styles from "./Answer.module.scss";
-import Avatar from "./Avatar";
 
 class Answer extends Component {
   handleClick = (event) => {
@@ -134,21 +135,25 @@ class Answer extends Component {
     const { users, questions, qId, activeUser } = this.props;
     return (
       <div>
-        <div className={styles.container}>
-          <div className={styles["question-card"]}>
-            {answeredByUser(qId, users, activeUser)
-              ? this.showPollHeader()
-              : this.askQuestionHeader()}
-            <div className={styles["card-body"]}>
-              <div className={styles.avatar}>
-                <Avatar id={getAuthor(questions, qId)} />
-              </div>
+        {questions[qId] === undefined ? (
+          <Page404 />
+        ) : (
+          <div className={styles.container}>
+            <div className={styles["question-card"]}>
               {answeredByUser(qId, users, activeUser)
-                ? this.showPoll()
-                : this.askQuestion()}
+                ? this.showPollHeader()
+                : this.askQuestionHeader()}
+              <div className={styles["card-body"]}>
+                <div className={styles.avatar}>
+                  <Avatar id={getAuthor(questions, qId)} />
+                </div>
+                {answeredByUser(qId, users, activeUser)
+                  ? this.showPoll()
+                  : this.askQuestion()}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
