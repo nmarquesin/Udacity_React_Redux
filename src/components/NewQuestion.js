@@ -62,7 +62,6 @@ class NewQuestion extends Component {
                 <div className={styles["input-area"]}>
                   <input
                     type="text"
-                    name="optionOneX"
                     id="optionOne"
                     value={this.state.optionOneText}
                     onChange={this.handleChangeTxtOne}
@@ -74,7 +73,6 @@ class NewQuestion extends Component {
                 <div className={styles["input-area"]}>
                   <input
                     type="text"
-                    name="optionTwoX"
                     id="optionTwo"
                     value={this.state.optionTwoText}
                     onChange={this.handleChangeTxtTwo}
