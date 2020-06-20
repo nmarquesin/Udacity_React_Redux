@@ -1,0 +1,36 @@
+@import "../utils/common-classes.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // width: fit-content;
+  // border: solid $color4;
+}
+.card {
+  margin: 50px 0;
+  width: 90%;
+  max-width: 600px;
+  border: solid $color4;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.card-title {
+  width: 100%;
+  font-size: xx-large;
+}
+.card-body {
+  width: fit-content;
+  text-align: center;
+  margin: 50px 0;
+}
+.btn {
+  margin-bottom: 50px;
+  width: 200px;
+}
