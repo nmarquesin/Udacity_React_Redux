@@ -1,44 +1,27 @@
-This project is part of Udacity's React Nanodegree and was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Would you rather?
 
-## Available Scripts
+This project is question asking and answereing game and is part of Udacity's React Nanodegree. It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-In the project directory, you can run:
+## How to play
 
-### `npm start`
+Select a question to answer, see other people's answers and add questions of your own. Each question you add or answer you scor eyou a point.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+View your total points and your position on the Scoreboard.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## How to install and run
 
-### `npm test`
+Download the repository. Open the repository's folder and on your terminal run
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm install`
 
-### `npm run build`
+This will take a few minutes.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+After that is done, to start a development server and run this project, on your terminal run
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+`npm start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Your browser should open a new window with the app running. It that doesn't happen, open your browser and go to http://localhost:3000/ which should redirect you to http://localhost:3000/login.
 
-### `npm run eject`
+Select a user to play as and enjoy your game!
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Use
-
-Select an user to play so you will be able to answer questions, view answers other users have given to questions you answered, and create new questions.
-
-Scoreboard is available to both players logged in and logged out.
+Any issues? Please, let me know.
