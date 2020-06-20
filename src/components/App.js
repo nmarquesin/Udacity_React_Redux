@@ -34,7 +34,7 @@ class App extends Component {
                 {loggedUser ? <LeaderBoard /> : <Login />}
               </Route>
 
-              <Route exact path="/newquestion">
+              <Route exact path="/add">
                 {loggedUser ? <NewQuestion /> : <Login />}
               </Route>
 
@@ -43,6 +43,10 @@ class App extends Component {
               </Route>
 
               <Route path="/question/:id" children={<Question />} />
+
+              {/* <Route path="*">
+                {loggedUser ? <Redirect to="/" /> : <Login />}
+              </Route> */}
             </Switch>
           </React.Fragment>
         )}

@@ -39,12 +39,12 @@ const NavBar = ({ dispatch, loggedUser, users }) => {
               <li>
                 <div
                   className={
-                    location.pathname === "/newquestion"
+                    location.pathname === "/add"
                       ? styles.tabselected
                       : styles.tab
                   }
                 >
-                  <Link to="/newquestion">
+                  <Link to="/add">
                     <FontAwesomeIcon icon={faPlusSquare} />
                     <span className={styles["menu-text"]}> New Question</span>
                   </Link>
