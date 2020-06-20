@@ -26,12 +26,16 @@ class App extends Component {
           <React.Fragment>
             <NavBar />
             <Switch>
-              <Route exact path="/newquestion">
-                {loggedUser ? <NewQuestion /> : <Redirect to="/login" />}
+              <Route exact path="/">
+                {loggedUser ? <QuestionList /> : <Login />}
               </Route>
 
               <Route exact path="/leaderboard">
-                <LeaderBoard />
+                {loggedUser ? <LeaderBoard /> : <Login />}
+              </Route>
+
+              <Route exact path="/newquestion">
+                {loggedUser ? <NewQuestion /> : <Login />}
               </Route>
 
               <Route exact path="/login">
@@ -39,10 +43,6 @@ class App extends Component {
               </Route>
 
               <Route path="/question/:id" children={<Question />} />
-
-              <Route exact path="/">
-                {loggedUser ? <QuestionList /> : <Redirect to="/login" />}
-              </Route>
             </Switch>
           </React.Fragment>
         )}
